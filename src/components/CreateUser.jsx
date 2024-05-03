@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const CreateUser = () => {
   const createUserEndpoint = `${API_URL_V1}/add`;
@@ -22,17 +24,41 @@ const CreateUser = () => {
     try {
       const res = await axios.post(createUserEndpoint, payLoad);
 
-      if (res.data?.status === "OK") {
+      if (res.data?.status) {
         // Success message and clear the data
-        alert("User created successfully!");
-        setName('');
-        setEmail('');
-        setCity('');
-        setCountry('');
+        toast.success("User created successfully!");
+
+        //alert("User created successfully!");
+
+        setName("");
+        setEmail("");
+        setCity("");
+        setCountry("");
       } else {
         // Error message
+        toast.warn("Error creating user!");
       }
-    } catch (error) {}
+    } catch (error) {
+      const fixCap = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+      const getErrorMessage = (error) => {
+        const {
+          data: {
+            errors: { body },
+          },
+        } = error.response;
+
+        //Optional Chaining Operator ES6
+        const message = body[0]?.message;
+        return fixCap(message);
+        //return message[0].toUpperCase() + message.substring(1);
+      };
+
+      toast.error(getErrorMessage(error));
+
+      //console.log(payLoad);
+      //console.error(error);
+    }
   };
 
   return (
@@ -45,7 +71,7 @@ const CreateUser = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(elName) => setName(elName.target.value)}
               />
             </Form.Group>
 
@@ -54,7 +80,7 @@ const CreateUser = () => {
               <Form.Control
                 type="email"
                 placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(elEmail) => setEmail(elEmail.target.value)}
               />
             </Form.Group>
 
@@ -63,7 +89,7 @@ const CreateUser = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter city"
-                onChange={(e) => setCity(e.target.value)}
+                onChange={(elCity) => setCity(elCity.target.value)}
               />
             </Form.Group>
 
@@ -72,7 +98,7 @@ const CreateUser = () => {
               <Form.Control
                 type="text"
                 placeholder="Enter country"
-                onChange={(e) => setCountry(e.target.value)}
+                onChange={(elCountry) => setCountry(elCountry.target.value)}
               />
             </Form.Group>
 

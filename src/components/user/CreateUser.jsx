@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import Layout from "./Layout";
+import Layout from "../layout/Layout";
+import * as userService from "../../service/user.service";
 
 const CreateUser = () => {
-  const createUserEndpoint = `${API_URL_V1}/add`;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
@@ -23,7 +23,7 @@ const CreateUser = () => {
     };
 
     try {
-      const res = await axios.post(createUserEndpoint, payLoad);
+      const res = await userService.createUser(payLoad);
 
       if (res.data?.status) {
         // Success message and clear the data

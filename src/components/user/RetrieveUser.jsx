@@ -1,22 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
-
 import { useParams } from "react-router-dom";
-
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import Layout from "./Layout";
+import Layout from "../layout/Layout";
+import * as userService from "../../service/user.service";
 
 const RetrieveUser = () => {
   const { userId } = useParams();
-  const getUserEndpoint = `${API_URL_V1}/get/${userId}`;
 
   const [user, setUser] = useState({});
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get(`${getUserEndpoint}`);
+      const res = await userService.retriveUser(userId);
       //console.log("Fetched data:", res.data.user); // Log fetched data
       console.log("Fetched data:", res);
       //setUser(res.data.user);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import Layout from "./Layout";
 //import process from "dotenv";
 
 const UsersList = () => {
@@ -8,13 +9,12 @@ const UsersList = () => {
 
   const getAllUsers = `${API_URL_V1}/all`;
 
-
   const [users, setUsers] = useState({});
 
   const fetchUsers = async () => {
     try {
       const res = await axios.get(getAllUsers);
-      console.log("Fetched data:", res.data.users); // Log fetched data
+      //console.log("Fetched data:", res.data.users); // Log fetched data
       setUsers(res.data.users);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -44,7 +44,7 @@ const UsersList = () => {
   }); */
 
   return (
-    <Container className="mt-5 mb-5">
+    <Layout>
       <h3 className="text-center mb-3">Users</h3>
       <Container>
         {Object.values(users).map((user, index) => (
@@ -67,7 +67,7 @@ const UsersList = () => {
           </React.Fragment>
         ))}
       </Container>
-    </Container>
+    </Layout>
   );
 };
 

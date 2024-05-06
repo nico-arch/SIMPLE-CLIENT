@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Layout from "./Layout";
 
 const CreateUser = () => {
   const createUserEndpoint = `${API_URL_V1}/add`;
@@ -26,7 +27,8 @@ const CreateUser = () => {
 
       if (res.data?.status) {
         // Success message and clear the data
-        toast.success("User created successfully!");
+        const userId = res.data.user.id;
+        toast.success(`User id:${userId} created successfully!`);
 
         //alert("User created successfully!");
 
@@ -62,7 +64,7 @@ const CreateUser = () => {
   };
 
   return (
-    <Container className="mb-5 ">
+    <Layout>
       <Row className="justify-content-center">
         <Col lg={6}>
           <Form>
@@ -108,7 +110,7 @@ const CreateUser = () => {
           </Form>
         </Col>
       </Row>
-    </Container>
+    </Layout>
   );
 };
 

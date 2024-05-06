@@ -11,28 +11,23 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { createGlobalStyle } from "styled-components";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Layout from "./components/Layout";
 
-const BackgroundColor = createGlobalStyle`
-body{
-      background-color: #f2f2f2;
-}
-`;
+
 
 const App = () => {
   return (
     <>
       {/* React ⚛️ + Vite ⚡ + Replit */}
-      <BackgroundColor />
-      <Container fluid className="mt-4 mb-3">
-        <ToastContainer position="bottom-center" />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<UsersList />} />
-            <Route path="/create" element={<CreateUser />} />
-            <Route path="/user/:id" element={<RetrieveUser />} />
-          </Routes>
-        </BrowserRouter>
-      </Container>
+      
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<UsersList />} />
+          <Route path="/create" element={<CreateUser />} />
+          <Route path="/user/:userId" element={<RetrieveUser />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

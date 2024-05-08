@@ -23,3 +23,19 @@ export const retrieveAllUsers = async () => {
 
   return res;
 };
+
+export const editUser = async (userId, payLoad) => {
+  const editUserEndpoint = `${API_URL_V1}/update/${userId}`;
+
+  const res = await axios.put(editUserEndpoint, payLoad);
+
+  return res;
+};
+
+export const removeUser = async (userId) => {
+  const removeUserEndpoint = `${API_URL_V1}/delete/${userId}`;
+
+  const res = await axios.delete(removeUserEndpoint);
+
+  return res;
+}

@@ -4,7 +4,8 @@ import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Layout from "../layout/Layout";
-import * as userService from "../../service/user.service";
+import * as userService from "../../services/user.service";
+import { getErrorMessage } from "../../helpers/string.helper";
 
 const CreateUser = () => {
   const [name, setName] = useState("");
@@ -41,30 +42,13 @@ const CreateUser = () => {
         toast.warn("Error creating user!");
       }
     } catch (error) {
-      const fixCap = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-
-      const getErrorMessage = (error) => {
-        const {
-          data: {
-            errors: { body },
-          },
-        } = error.response;
-
-        //Optional Chaining Operator ES6
-        const message = body[0]?.message;
-        return fixCap(message);
-        //return message[0].toUpperCase() + message.substring(1);
-      };
-
       toast.error(getErrorMessage(error));
-
-      //console.log(payLoad);
-      //console.error(error);
     }
   };
 
   return (
     <Layout>
+      <h3 className="text-center">Create User</h3>
       <Row className="justify-content-center">
         <Col lg={6}>
           <Form>

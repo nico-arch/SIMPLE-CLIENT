@@ -4,7 +4,7 @@ import { Container, Button, Form, Row, Col, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.min.css";
 import Layout from "../layout/Layout";
-import * as userService from "../../service/user.service";
+import * as userService from "../../services/user.service";
 
 const RetrieveUser = () => {
   const { userId } = useParams();
@@ -44,6 +44,13 @@ const RetrieveUser = () => {
                       {user.city}, {user.country}
                     </p>
                   )}
+                  <Button
+                    variant="secondary"
+                    as={NavLink}
+                    to={`edit/${user.id}`}
+                  >
+                    Edit user
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>

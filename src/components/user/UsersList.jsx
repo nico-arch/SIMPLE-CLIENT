@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Card, Col, Container, Row, Button } from "react-bootstrap";
 import Layout from "../layout/Layout";
-import * as userService from "../../service/user.service";
+import * as userService from "../../services/user.service";
 //import process from "dotenv";
 
 const UsersList = () => {
@@ -38,6 +39,13 @@ const UsersList = () => {
                         {user.city}, {user.country}
                       </p>
                     )}
+                    <Button
+                      variant="secondary"
+                      as={NavLink}
+                      to={`edit/${user.id}`}
+                    >
+                      Edit user
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>

@@ -10,7 +10,11 @@ const TopNavigation = () => {
             Simple Client
           </Navbar.Brand>
           <Nav className="flex-grow-1 justify-content-end">
-            <Nav.Link as={NavLink} to="/create">
+            <Nav.Link
+              className="fw-bold badge bg-secondary text-wrap text-white"
+              as={NavLink}
+              to="/create"
+            >
               Create User
             </Nav.Link>
             {/* <Nav.Link as={NavLink} to="/user/:userId">

@@ -24,13 +24,14 @@ const UsersList = () => {
 
   return (
     <Layout>
+      
       <h3 className="text-center mb-3">Users</h3>
       <Container>
         {Object.values(users).map((user, index) => (
           <React.Fragment key={user.id}>
             <Row className="justify-content-center">
               <Col lg={4}>
-                <Card>
+                <Card className="mt-2">
                   <Card.Body>
                     <h4>{user.name}</h4>
                     <p>{user.email}</p>

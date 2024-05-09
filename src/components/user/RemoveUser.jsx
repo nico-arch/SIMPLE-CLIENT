@@ -54,17 +54,17 @@ const RemoveUser = () => {
         </h4>
         <Row className="justify-content-center">
           <Col md={3}>
-            <Form className="mt-4">
+            <Form className="mt-4 text-center">
               <Button
                 variant="secondary"
                 onClick={cancelAction}
                 className="m-1"
               >
-                No, revert my action
+                No
               </Button>
 
               <Button variant="danger" onClick={submitAction} className="m-1">
-                Yes, remove it
+                Yes
               </Button>
             </Form>
           </Col>

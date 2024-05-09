@@ -9,5 +9,6 @@ export default defineConfig({
   },
   define: {
     API_URL_V1: `"${process.env["API_URL_V1"]}"`,
+    YOUR_EMAIL: `"${process.env["YOUR_EMAIL"]}"`,
   },
 });

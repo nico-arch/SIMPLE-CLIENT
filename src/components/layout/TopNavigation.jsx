@@ -6,7 +6,7 @@ const TopNavigation = () => {
     <>
       <Navbar bg="Light" variant="Light" className="mb-4">
         <Container>
-          <Navbar.Brand as={NavLink} to="/">
+          <Navbar.Brand as={NavLink} to="/" className="fw-bold">
             Simple Client
           </Navbar.Brand>
           <Nav className="flex-grow-1 justify-content-end">

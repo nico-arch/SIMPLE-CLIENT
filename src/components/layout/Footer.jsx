@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom/";
 const Footer = () => {
   return (
     <Container>
+      <hr/>
       <Row className="justify-content-center mb-2">
         <Col md={{ span: 3, offset: 1 }}>
           <h6 className="fw-bold">Simple-Client &copy; 2024</h6>

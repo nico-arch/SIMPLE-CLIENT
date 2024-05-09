@@ -15,7 +15,7 @@ const TopNavigation = () => {
               as={NavLink}
               to="/create"
             >
-              Create User
+              Create a user
             </Nav.Link>
             {/* <Nav.Link as={NavLink} to="/user/:userId">
               Get User

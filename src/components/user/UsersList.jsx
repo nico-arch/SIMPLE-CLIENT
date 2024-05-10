@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Card, Col, Container, Row, Button } from "react-bootstrap";
+import { Card, Col, Container, Row, Button, Spinner } from "react-bootstrap";
 import Layout from "../layout/Layout";
 import * as userService from "../../services/user.service";
 import { toast } from "react-toastify";
+
+import UserCard from "./UserCard";
+//import { List } from "react-content-loader";
 //import process from "dotenv";
 
 const UsersList = () => {
   const [users, setUsers] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchUsers = async () => {
     try {
+      setIsLoading(true);
       const res = await userService.retrieveAllUsers();
       //console.log("Fetched data:", res.data.users); // Log fetched data
       setUsers(res.data.users);
@@ -23,12 +28,15 @@ const UsersList = () => {
         toast.warn(userNotFoundMessage);
         console.error(userNotFoundMessage);
       } else {
+        //Network error
         const serverIsDownMessage =
           "The server is down, please try again later";
         setErrorMessage(serverIsDownMessage);
         toast.error(serverIsDownMessage);
         console.error(error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,35 +54,29 @@ const UsersList = () => {
         </>
       ) : (
         <>
-          <h3 className="text-center mb-3">Users</h3>
-          <Container>
-            {Object.values(users).map((user, index) => (
-              <React.Fragment key={user.id}>
+          {isLoading ? (
+            //if is loadind show the spinner
+            <>
+              <div className="text-center">
+                <Spinner animation="grow" />
+                {/* <List /> */}
+              </div>
+            </>
+          ) : (
+            //else show the users list
+            <>
+              <h3 className="text-center mb-3">Users</h3>
+              <Container>
                 <Row className="justify-content-center">
-                  <Col lg={4}>
-                    <Card className="mt-2">
-                      <Card.Body>
-                        <h4>{user.name}</h4>
-                        <p>{user.email}</p>
-                        {user.city && user.country && (
-                          <p>
-                            {user.city}, {user.country}
-                          </p>
-                        )}
-                        <Button
-                          variant="secondary"
-                          as={NavLink}
-                          to={`edit/${user.id}`}
-                        >
-                          Edit user
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  </Col>
+                  {Object.values(users).map((user, index) => (
+                    <Col lg={4} key={user.id} className="p-1">
+                      <UserCard user={user} />
+                    </Col>
+                  ))}
                 </Row>
-              </React.Fragment>
-            ))}
-          </Container>
+              </Container>
+            </>
+          )}
         </>
       )}
     </Layout>

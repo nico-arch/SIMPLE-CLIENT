@@ -25,6 +25,7 @@
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "react-bootstrap": "^2.10.2",
+    "react-content-loader": "^7.0.0",
     "react-router-dom": "^6.23.0",
     "react-toastify": "^10.0.5",
     "styled-components": "^6.1.9"

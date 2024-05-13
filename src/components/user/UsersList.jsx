@@ -33,7 +33,7 @@ const UsersList = () => {
           "The server is down, please try again later";
         setErrorMessage(serverIsDownMessage);
         toast.error(serverIsDownMessage);
-        console.error(error.message);
+        console.log(error.message);
       }
     } finally {
       setIsLoading(false);

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ping } from "./ping.service";
 
 export const createUser = async (payLoad) => {
   const createUserEndpoint = `${API_URL_V1}/add`;
@@ -21,6 +22,9 @@ export const retrieveAllUsers = async () => {
 
   const res = await axios.get(getAllUsersEndpoint);
 
+  //const pingMessage = await ping();  
+  //console.log(pingMessage);
+
   return res;
 };
 
@@ -38,4 +42,4 @@ export const removeUser = async (userId) => {
   const res = await axios.delete(removeUserEndpoint);
 
   return res;
-}
+};
